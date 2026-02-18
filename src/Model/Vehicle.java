@@ -9,8 +9,7 @@ public class Vehicle {
     
     private String model;
     private double price, mileage;
-    private List<Long> Booked_time = null;
-    private boolean availability;
+    private List<BookingTimes> Booked_time = null;
     
     public Vehicle(String vehicleId, String type, String model, double price, double mileage) {
         this.vehicleId = vehicleId;
@@ -19,7 +18,6 @@ public class Vehicle {
         this.price = price;
         this.mileage = mileage;
         Booked_time = new ArrayList<>();
-        this.availability = true;
     }
     
     public String getType() {
@@ -56,22 +54,16 @@ public class Vehicle {
     public void setMileage(double mileage) {
         this.mileage = mileage;
     }
-    public List<Long> getBooked_time() {
+    public List<BookingTimes> getBooked_time() {
         return Booked_time;
     }
-    public void setBooked_time(List<Long> booked_time) {
+    public void setBooked_time(List<BookingTimes> booked_time) {
         Booked_time = booked_time;
     }
-    public boolean isAvailability() {
-        return availability;
-    }
+    
     @Override
     public String toString() {
         return "Vehicle [vehicleId=" + vehicleId + ", Type=" + type + ", model=" + model + ", price=" + price
-                + ", mileage=" + mileage + ", Booked_time=" + Booked_time + ", availability=" + availability + "]";
-    }
-
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
+                + " per hour , mileage=" + mileage + ", Booked_time=" + Booked_time + "]";
     }
 }

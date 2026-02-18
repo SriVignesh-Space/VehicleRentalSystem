@@ -10,7 +10,7 @@ import Service.Generator;
 
 
 public class VehicleController {
-    private List<Vehicle> vehicles = new ArrayList<>();
+    private static List<Vehicle> vehicles = new ArrayList<>();
     Scanner sc=null;
     VehicleController(Scanner sc){
         this.sc = sc;
@@ -18,10 +18,10 @@ public class VehicleController {
 
     public void addVehicle(){
         System.out.println("Enter Vehicle Type : ");
-        String type = sc.nextLine();
+        String type = sc.nextLine().trim();
         System.out.println("Enter Vehicle Model : ");
         String model = sc.nextLine();
-        System.out.println("Enter Rental Price : ");
+        System.out.println("Enter Rental Price/hr: ");
         double price = sc.nextDouble();
         System.out.println("Enter Mileage : ");
         double mileage = sc.nextDouble();
@@ -29,16 +29,13 @@ public class VehicleController {
         Vehicle vehicle = new Vehicle(id,type, model, price, mileage);
 
         vehicles.add(vehicle);
-
-        System.out.println("Vehicle Added Successfully");
+        System.out.println("Vehicle Added Successfully "+vehicles.size());
+        System.out.println(vehicle);
     }
 
-    public void getAllVehicles(){
-        for(Vehicle vehicle : vehicles){
-            System.out.println(vehicle.toString());
-            System.out.println();
-            System.out.println();
-        }
+    public List<Vehicle> getAllVehicles(){
+        System.out.println("vehicle now : " + vehicles.size());
+        return vehicles;
     }
 
     public void deleteVehicle(){

@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import Model.Bookings;
 import Model.Customer;
 import Service.Generator;
 
 public class CustomerController {
     Scanner sc = null;
     List<Customer> customers =null;
+    BookingsController bookingsController;
 
-    CustomerController(Scanner sc){
+    public CustomerController(Scanner sc){
         this.sc = sc;
         this.customers = new ArrayList<>();
+        bookingsController = new BookingsController(sc);
     }
 
     public void addCustomer(){
@@ -48,6 +51,46 @@ public class CustomerController {
         return null;
     }
 
+    public void getAllBookings(Customer customer){
+        for(Bookings booking : customer.getbookings()){
+            System.out.println(booking.toString());
+        }
+    }
+
+
+    private void customerFeatures(Customer customer) {
+        // search for vehicles
+
+        // book vehicles
+        boolean running = true;
+        while(running){
+            System.out.println("Main Page");
+            System.out.println("1. Search Vehicle");
+            System.out.println("2. Rent Vehicle");
+            System.out.println("3. Get all Bookings");
+            System.out.println("4. back to main menu");
+            int option = sc.nextInt();
+            sc.nextLine();
+
+            switch (option) {
+                case 1:
+                    bookingsController.getVehicleAtTime();
+                    break;
+                case 2:
+                    bookingsController.RentVehicle(customer);
+                    break;
+                case 3:
+                    getAllBookings(customer);
+                    break;
+                case 4:
+                    running = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     public void handle(){
         Customer customer = null;   
         boolean running = true;
@@ -58,10 +101,19 @@ public class CustomerController {
             System.out.println("3. Back to Main Menu");
 
             int option = sc.nextInt();
+            sc.nextLine();
             switch (option) {
                 case 1:
-                    
+                    addCustomer();
+                    break;  
+                case 2:{
+                    customer = validateCustomer();
+                    if(customer != null) {
+                        System.out.println("Login successfull");
+                        customerFeatures(customer);  
+                    }
                     break;
+                }
                 case 3:
                     running = false;
                     break;
