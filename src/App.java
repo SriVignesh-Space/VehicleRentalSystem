@@ -10,6 +10,7 @@ public class App {
         AdminController adminController = new AdminController(sc);
         CustomerController customerController = new CustomerController(sc);
 
+        
         boolean running = true;
         while(running){
             System.out.println("Vehicle Rental System");
